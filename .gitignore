@@ -1,0 +1,9 @@
+visual_res/*
+frames/
+__pycache__
+*.pt
+*.pth
+*.mp4
+*.pyc
+surgery_gesture_r2plus1d.py
+surgery*
