@@ -44,9 +44,18 @@ The current version supports attribution methods and video classification models
 * Outputs: The results will be defaultly saved to the directory ./visual_res/$vis_method$/$model$/$save_label$/.
 
 ## Results
+
+### Kinectis-400 (GT = ironing)
 ![Kinectis-400 (GT = ironing)](figures/res_fig_kinetics.png)
 
+### EPIC-Kitchens-Noun (GT = cupboard)
 ![EPIC-Kitchens-Noun (GT = cupboard)](figures/res_fig_epic.png)
+
+### GIF visualization of perturbation results (on UCF101 dataset)
+#### Long Jump
+![ucf101-longjump](figures/v_LongJump_g01_c06_frames.gif) ![ucf101-longjump](figures/v_LongJump_g01_c06_ptb.gif)
+#### Walking With Dog
+![ucf101-walikingdog](figures/v_WalkingWithDog_g06_c05_frames.gif) ![ucf101-walikingdog](figures/v_WalkingWithDog_g06_c05_ptb.gif)
 
 ## License
 
