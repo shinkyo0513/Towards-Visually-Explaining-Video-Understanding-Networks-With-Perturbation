@@ -39,7 +39,7 @@ The current version supports attribution methods and video classification models
 * **pretrain_dataset**: Dataset name that test model pretrained on. Choices include 'kinetics', 'epic-kitchens-verb', 'epic-kitchens-noun'.
 * **vis_method**: Name of visualization methods. Choices include 'grad', 'grad*input', 'integrated_grad', 'grad_cam', 'perturb'. Here the 'perturb' means is spatiotemporal perturbation method.
 * **save_label**: Extra label for saving results. If given, visualization results will be saved in ./visual_res/$vis_method$/$model$/$save_label$.
-* no_gpu: If set, the demo will be run on CPU, else run on only one GPU.
+* **no_gpu**: If set, the demo will be run on CPU, else run on only one GPU.
 
 Arguments for perturb:
 * **num_iter**: Number of iterations to get the perturbation results. Default is set to 2000 for better convergence.
@@ -51,13 +51,13 @@ Arguments for gradient methods:
 ### Examples
 
 #### Saptiotemporal Perturbation + I3D (pretrained on Kinetics-400)
-`$ python main.py --videos_dir /home/acb11711tx/lzq/VideoVisual/test_data/kinetics/sampled_frames --model i3d --pretrain_dataset kinetics --vis_method perturb --num_iter 2000 --perturb_area 0.1`
+`$ python main.py --videos_dir VideoVisual/test_data/kinetics/sampled_frames --model i3d --pretrain_dataset kinetics --vis_method perturb --num_iter 2000 --perturb_area 0.1`
 
 #### Spatiotemporal Perturbation + TSM (pretrained on EPIC-Kitchens-noun)
-`$ python main.py --videos_dir /home/acb11711tx/lzq/VideoVisual/test_data/epic-kitchens-noun/sampled_frames --model tsm --pretrain_dataset epic-kitchens-noun --vis_method perturb --num_iter 2000 --perturb_area 0.05`
+`$ python main.py --videos_dir VideoVisual/test_data/epic-kitchens-noun/sampled_frames --model tsm --pretrain_dataset epic-kitchens-noun --vis_method perturb --num_iter 2000 --perturb_area 0.05`
 
 #### Integrated Gradients + R(2+1)D (pretrained on Kinetics-400)
-`$ python main.py --videos_dir /home/acb11711tx/lzq/VideoVisual/test_data/kinetics/sampled_frames --model r2plus1d --pretrain_dataset kinetics --vis_method integrated_grad`
+`$ python main.py --videos_dir VideoVisual/test_data/kinetics/sampled_frames --model r2plus1d --pretrain_dataset kinetics --vis_method integrated_grad`
 
 
 ## Results
