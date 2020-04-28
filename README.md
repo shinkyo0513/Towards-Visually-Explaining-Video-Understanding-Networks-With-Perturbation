@@ -30,6 +30,24 @@ The current version supports attribution methods and video classification models
 
 ## Running the code
 
+* **Inputs frames**: Testing frames are provided in the directory ./test_data/$dataset_name$/sampled_frames
+* **Outputs**: The results will be defaultly saved to the directory ./visual_res/$vis_method$/$model$/$save_label$/.
+
+### Arguments
+* **videos_dir**: Directory for video frames. Frames belonging to one video should be put in one file under the directory, and the first part splited by '-' will be considered as label name.
+* **model**: Name of test model. Default is R(2+1)D, choices include R(2+1)D, R3D, MC3, I3D and TSM currently.
+* **pretrain_dataset**: Dataset name that test model pretrained on. Choices include 'kinetics', 'epic-kitchens-verb', 'epic-kitchens-noun'.
+* **vis_method**: Name of visualization methods. Choices include 'grad', 'grad*input', 'integrated_grad', 'grad_cam', 'perturb'. Here the 'perturb' means is spatiotemporal perturbation method.
+* **save_label**: Extra label for saving results. If given, visualization results will be saved in ./visual_res/$vis_method$/$model$/$save_label$.
+* no_gpu: If set, the demo will be run on CPU, else run on only one GPU.
+
+Arguments for perturb:
+* **num_iter**: Number of iterations to get the perturbation results. Default is set to 2000 for better convergence.
+* **perturb_area**: Target area for preserving parts on input. Default is 0.1 (10% of all). Choices include [0.01, 0.02, 0.05, 0.1, 0.15, 0.2].
+
+Arguments for gradient methods:
+* **polarity**: The polarity of showing gradients. Default is 'positive', which means the negative gradients will be set as 0 before visualization.
+
 ### Examples
 
 #### Saptiotemporal Perturbation + I3D (pretrained on Kinetics-400)
@@ -41,7 +59,6 @@ The current version supports attribution methods and video classification models
 #### Integrated Gradients + R(2+1)D (pretrained on Kinetics-400)
 `$ python main.py --videos_dir /home/acb11711tx/lzq/VideoVisual/test_data/kinetics/sampled_frames --model r2plus1d --pretrain_dataset kinetics --vis_method integrated_grad`
 
-* Outputs: The results will be defaultly saved to the directory ./visual_res/$vis_method$/$model$/$save_label$/.
 
 ## Results
 
@@ -57,6 +74,34 @@ The current version supports attribution methods and video classification models
 #### Walking With Dog
 ![ucf101-walikingdog](figures/v_WalkingWithDog_g06_c05_frames.gif) ![ucf101-walikingdog](figures/v_WalkingWithDog_g06_c05_ptb.gif)
 
-## License
+## Reference
 
-TorchRay is CC-BY-NC licensed, as found in the [LICENSE](LICENSE) file.
+### Intergated Gradients:
+```
+@inproceedings{sundararajan2017axiomatic,
+  title={Axiomatic attribution for deep networks},
+  author={Sundararajan, Mukund and Taly, Ankur and Yan, Qiqi},
+  booktitle={ICML},
+  year={2017},
+}
+```
+
+### GradCAM:
+```
+@inproceedings{selvaraju2017grad,
+  title={Grad-cam: Visual explanations from deep networks via gradient-based localization},
+  author={Selvaraju, Ramprasaath R and Cogswell, Michael and Das, Abhishek and Vedantam, Ramakrishna and Parikh, Devi and Batra, Dhruv},
+  booktitle={ICCV},
+  year={2017}
+}
+```
+
+### Extremal Perturbation:
+```
+@inproceedings{fong2019understanding,
+  title={Understanding deep networks via extremal perturbations and smooth masks},
+  author={Fong, Ruth and Patrick, Mandela and Vedaldi, Andrea},
+  booktitle={ICCV},
+  year={2019}
+}
+```

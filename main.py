@@ -42,11 +42,11 @@ parser.add_argument("--vis_method", type=str, default='integrated_grad',
                     choices=['grad', 'grad*input', 'integrated_grad', 'grad_cam', 'perturb'])
 parser.add_argument("--save_label", type=str, default='')
 parser.add_argument("--no_gpu", action='store_true')
-parser.add_argument("--num_iter", type=int, default=1000)
-parser.add_argument('--polarity', type=str, default='positive',
-                    choices=['positive', 'negative'])
+parser.add_argument("--num_iter", type=int, default=2000)
 parser.add_argument('--perturb_area', type=float, default=0.1,
                     choices=[0.01, 0.02, 0.05, 0.1, 0.15, 0.2])
+parser.add_argument('--polarity', type=str, default='positive',
+                    choices=['positive', 'negative'])
 args = parser.parse_args()
 
 # assert args.num_gpu >= -1
