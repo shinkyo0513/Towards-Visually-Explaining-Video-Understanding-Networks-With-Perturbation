@@ -12,7 +12,7 @@ def backward_hook(m, i_grad, o_grad):
 observ_actv_ = []
 def forward_hook(m, i, o):
     global observ_actv_
-    observ_actv_.append(o[0].detach())
+    observ_actv_.append(o.detach())
 
 def grad_cam (inputs, labels, model, device, layer_name, norm_vis=True):
     model.eval()   # Set model to evaluate mode
@@ -28,7 +28,7 @@ def grad_cam (inputs, labels, model, device, layer_name, norm_vis=True):
 
     observ_layer = model
     for name in layer_name:
-        print(dict(observ_layer.named_children()).keys())
+        # print(dict(observ_layer.named_children()).keys())
         observ_layer = dict(observ_layer.named_children())[name]
 
     observ_layer.register_backward_hook(backward_hook)
@@ -42,6 +42,7 @@ def grad_cam (inputs, labels, model, device, layer_name, norm_vis=True):
     _, preds = torch.max(outputs, 1)
 
     observ_actv = observ_actv_[0]   # 1 x C x num_f/8 x 56 x 56
+    # print('observ_actv:', observ_actv.shape)
     observ_actv = torch.repeat_interleave(observ_actv, int(nt/observ_actv.shape[2]), dim=2)
 
     # backward pass
@@ -51,6 +52,7 @@ def grad_cam (inputs, labels, model, device, layer_name, norm_vis=True):
     outputs.backward(backward_signals)
 
     observ_grad = observ_grad_[0]   # 1 x C x num_f/8 x 56 x 56
+    # print('observ_grad:', observ_grad.shape)
     observ_grad = torch.repeat_interleave(observ_grad, int(nt/observ_grad.shape[2]), dim=2)
 
     observ_grad_w = observ_grad.mean(dim=4, keepdim=True).mean(dim=3, keepdim=True) # 1 x 512 x num_f x 1x1

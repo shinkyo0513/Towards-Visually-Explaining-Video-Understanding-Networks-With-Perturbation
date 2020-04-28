@@ -123,7 +123,7 @@ elif 'epic-kitchens' in args.pretrain_dataset:
     if args.model == 'tsm':
         from model_def.tsm import tsm as model
         model_ft = model(class_num, segment_count=8, pretrained=args.pretrain_dataset)
-        clip_length = 16
+        clip_length = 8
     else:
         raise Exception(f'{args.pretrain_dataset} has only pretrained TSM model. Given {args.model}.')
     model_ft = model_ft.to(device)

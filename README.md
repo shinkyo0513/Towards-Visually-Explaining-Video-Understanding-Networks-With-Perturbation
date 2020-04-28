@@ -11,7 +11,7 @@ The current version supports attribution methods and video classification models
 #### Attribution methods:
 * **Backprop-based**: Gradients, Gradients x Inputs, Integrated Gradients;
 * **Activation-based**: GradCAM (does not support TSM now);
-* **Perturbation-based**: Extremal Perturbation and Spatiotemporal Perturbation (An extension vision of extremal perturbation on video inputs).
+* **Perturbation-based**: Extremal Perturbation and Spatiotemporal Perturbation (An extension version of extremal perturbation on video inputs).
 
 ## Requirements
 
@@ -40,6 +40,13 @@ The current version supports attribution methods and video classification models
 
 #### Integrated Gradients + R(2+1)D (pretrained on Kinetics-400)
 `$ python main.py --videos_dir /home/acb11711tx/lzq/VideoVisual/test_data/kinetics/sampled_frames --model r2plus1d --pretrain_dataset kinetics --vis_method integrated_grad`
+
+* Outputs: The results will be defaultly saved to the directory ./visual_res/$vis_method$/$model$/$save_label$/.
+
+## Results
+![Kinectis-400 (GT = ironing)](figures/res_fig_kinetics.png)
+
+![EPIC-Kitchens-Noun (GT = cupboard)](figures/res_fig_epic.png)
 
 ## License
 
