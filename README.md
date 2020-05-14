@@ -6,7 +6,7 @@ The current version supports attribution methods and video classification models
 
 #### Video classification models:
 * **Pretrained on Kinetics-400**: I3D, R(2+1)D, R3D, MC3, TSM;
-* **Pretrained on EPIC-Kitchens**: (noun & verb): TSM.
+* **Pretrained on EPIC-Kitchens** (noun & verb): TSM.
 
 #### Attribution methods:
 * **Backprop-based**: Gradients, Gradients x Inputs, Integrated Gradients;
@@ -75,6 +75,16 @@ Arguments for gradient methods:
 ![ucf101-walikingdog](figures/v_WalkingWithDog_g06_c05_frames.gif) ![ucf101-walikingdog](figures/v_WalkingWithDog_g06_c05_ptb.gif)
 
 ## Reference
+
+### Ours preprint
+```
+@article{li2020comprehensive,
+  title={A Comprehensive Study on Visual Explanations for Spatio-temporal Networks},
+  author={Li, Zhenqiang and Wang, Weimin and Li, Zuoyue and Huang, Yifei and Sato, Yoichi},
+  journal={arXiv preprint arXiv:2005.00375},
+  year={2020}
+}
+```
 
 ### Intergated Gradients:
 ```
