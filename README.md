@@ -65,7 +65,7 @@ Arguments for gradient methods:
 
 ## Results
 
-### GIF visualization of perturbation results (on UCF101 dataset by STEP)
+### GIF visualization of perturbation results (on UCF101 and EPIC-Kitchens-Noun datasets by STEP)
 <!-- #### Long Jump
 ![ucf101-longjump](figures/v_LongJump_g01_c06_frames.gif) ![ucf101-longjump](figures/v_LongJump_g01_c06_ptb.gif)
 #### Walking With Dog
