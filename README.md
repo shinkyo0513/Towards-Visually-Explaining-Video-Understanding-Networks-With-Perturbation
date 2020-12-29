@@ -84,7 +84,7 @@ Arguments for gradient methods:
 
 | Basketball 5% | Skijet 5% | Walking-With-Dog 10% | OpenFridge 10% | CloseDrawer 10% | OpenCupboard 15% |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| <img src="figures/step_gif_res/basketball_05.gif" width=100/> | <img src="figures/step_gif_res/skijet_05.gif" width=100/> | <img src="figures/step_gif_res/walking_with_dog_10.gif" width=100/> | <img src="figures/step_gif_res/fencing_10.gif" width=100/> | <img src="figures/step_gif_res/open_fridge_10.gif" width=100/> | <img src="figures/step_gif_res/close_drawer_10.gif" width=100/> | <img src="figures/step_gif_res/open_cupboard_15.gif" width=100/> |
+| ![](figures/step_gif_res/basketball_05.gif) | ![](figures/step_gif_res/skijet_05.gif) | ![](figures/step_gif_res/walking_with_dog_10.gif) | ![](figures/step_gif_res/fencing_10.gif) | ![](figures/step_gif_res/open_fridge_10.gif) | ![](figures/step_gif_res/close_drawer_10.gif) | ![](figures/step_gif_res/open_cupboard_15.gif) |
 
 ## Reference
 
