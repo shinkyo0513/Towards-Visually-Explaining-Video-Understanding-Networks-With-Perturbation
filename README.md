@@ -11,7 +11,10 @@ The current version supports attribution methods and video classification models
 #### Attribution methods:
 * **Backprop-based**: Gradients, Gradients x Inputs, Integrated Gradients;
 * **Activation-based**: GradCAM (does not support TSM now);
-* **Perturbation-based**: Extremal Perturbation and Spatiotemporal Perturbation (An extension version of extremal perturbation on video inputs).
+* **Perturbation-based**: 
+  * **2D-EP**: An extended version of Entremal Perturbations on the video input that perturbs each frame separately and regularizes the perturbation area in each frame to the target ratio equally.
+  * **3D-EP**: An extended version of Entremal Perturbations on the video input that perturbs across all frames and regularizes the whole perturbation area in all frames to the target ratio.
+  * **STEP**: Spatio-Temporal Extremal Perturbations with a special regularization term for the spatiotemporal smoothness in the video attribution results.
 
 ## Requirements
 
@@ -37,7 +40,7 @@ The current version supports attribution methods and video classification models
 * **videos_dir**: Directory for video frames. Frames belonging to one video should be put in one file under the directory, and the first part splited by '-' will be considered as label name.
 * **model**: Name of test model. Default is R(2+1)D, choices include R(2+1)D, R3D, MC3, I3D and TSM currently.
 * **pretrain_dataset**: Dataset name that test model pretrained on. Choices include 'kinetics', 'epic-kitchens-verb', 'epic-kitchens-noun'.
-* **vis_method**: Name of visualization methods. Choices include 'grad', 'grad*input', 'integrated_grad', 'grad_cam', 'perturb'. Here the 'perturb' means is spatiotemporal perturbation method.
+* **vis_method**: Name of visualization methods. Choices include 'grad', 'grad*input', 'integrated_grad', 'grad_cam', '2d_ep', '3d_ep', 'step'. 
 * **save_label**: Extra label for saving results. If given, visualization results will be saved in ./visual_res/$vis_method$/$model$/$save_label$.
 * **no_gpu**: If set, the demo will be run on CPU, else run on only one GPU.
 
@@ -50,36 +53,40 @@ Arguments for gradient methods:
 
 ### Examples
 
-#### Saptiotemporal Perturbation + I3D (pretrained on Kinetics-400)
-`$ python main.py --videos_dir VideoVisual/test_data/kinetics/sampled_frames --model i3d --pretrain_dataset kinetics --vis_method perturb --num_iter 2000 --perturb_area 0.1`
+#### Saptiotemporal Perturbation + R(2+1)D (pretrained on Kinetics-400)
+`$ python main.py --videos_dir VideoVisual/test_data/kinetics/sampled_frames --model r2plus1d --pretrain_dataset kinetics --vis_method step --num_iter 2000 --perturb_area 0.1`
 
 #### Spatiotemporal Perturbation + TSM (pretrained on EPIC-Kitchens-noun)
 `$ python main.py --videos_dir VideoVisual/test_data/epic-kitchens-noun/sampled_frames --model tsm --pretrain_dataset epic-kitchens-noun --vis_method perturb --num_iter 2000 --perturb_area 0.05`
 
-#### Integrated Gradients + R(2+1)D (pretrained on Kinetics-400)
-`$ python main.py --videos_dir VideoVisual/test_data/kinetics/sampled_frames --model r2plus1d --pretrain_dataset kinetics --vis_method integrated_grad`
+#### Integrated Gradients + I3D (pretrained on Kinetics-400)
+`$ python main.py --videos_dir VideoVisual/test_data/kinetics/sampled_frames --model i3d --pretrain_dataset kinetics --vis_method integrated_grad`
 
 
 ## Results
 
 ### Kinectis-400 (GT = ironing)
 ![Kinectis-400 (GT = ironing)](figures/res_fig_kinetics.png)
-
+'Perturbation' denotes 3D-EP here.
 ### EPIC-Kitchens-Noun (GT = cupboard)
 ![EPIC-Kitchens-Noun (GT = cupboard)](figures/res_fig_epic.png)
+'Perturbation' denotes 3D-EP here.
 
-### GIF visualization of perturbation results (on UCF101 dataset)
-#### Long Jump
+### GIF visualization of perturbation results (on UCF101 dataset by STEP)
+<!-- #### Long Jump
 ![ucf101-longjump](figures/v_LongJump_g01_c06_frames.gif) ![ucf101-longjump](figures/v_LongJump_g01_c06_ptb.gif)
 #### Walking With Dog
-![ucf101-walikingdog](figures/v_WalkingWithDog_g06_c05_frames.gif) ![ucf101-walikingdog](figures/v_WalkingWithDog_g06_c05_ptb.gif)
+![ucf101-walikingdog](figures/v_WalkingWithDog_g06_c05_frames.gif) ![ucf101-walikingdog](figures/v_WalkingWithDog_g06_c05_ptb.gif) -->
+| <div style="width:150px">Basketball 5%</div> | <div style="width:150px">Skijet 5%</div> | <div style="width:150px">Walking-With-Dog 10%</div> | <div style="width:150px">OpenFridge 10%</div> | <div style="width:150px">CloseDrawer 10%</div> | <div style="width:150px">OpenCupboard 15%</div> |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| <img src="figures/step_gif_res/basketball_05.gif" width=150/> | <img src="figures/step_gif_res/skijet_05.gif" width=150/> | <img src="figures/step_gif_res/walking_with_dog_10.gif" width=150/> | <img src="figures/step_gif_res/fencing_10.gif" width=150/> | <img src="figures/step_gif_res/open_fridge_10.gif" width=150/> | <img src="figures/step_gif_res/close_drawer_10.gif" width=150/> | <img src="figures/step_gif_res/open_cupboard_15.gif" width=150/> |
 
 ## Reference
 
-### Ours preprint
+### Ours preprint (to appear in WACV2021):
 ```
 @article{li2020comprehensive,
-  title={A Comprehensive Study on Visual Explanations for Spatio-temporal Networks},
+  title={Towards Visually Explaining Video Understanding Networks with Perturbation},
   author={Li, Zhenqiang and Wang, Weimin and Li, Zuoyue and Huang, Yifei and Sato, Yoichi},
   journal={arXiv preprint arXiv:2005.00375},
   year={2020}

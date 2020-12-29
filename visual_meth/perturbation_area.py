@@ -22,7 +22,6 @@ PRESERVE_VARIANT = "preserve"
 DELETE_VARIANT = "delete"
 DUAL_VARIANT = "dual"
 
-
 def simple_log_reward(activation, target, variant):
     N = target.shape[0]
     bs = activation.shape[0]
@@ -146,7 +145,6 @@ class MaskGenerator:
         """
         self.weight = self.weight.to(dev)
         return self
-
 
 class Perturbation:
     def __init__(self, input, num_levels=8, max_blur=20, type=BLUR_PERTURBATION):

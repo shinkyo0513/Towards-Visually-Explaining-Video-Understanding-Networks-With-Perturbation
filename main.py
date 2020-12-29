@@ -33,8 +33,6 @@ from visual_meth.gradients import gradients
 from visual_meth.perturbation import video_perturbation
 from visual_meth.grad_cam import grad_cam
 
-from visual_meth.perturbation_area import spatiotemporal_perturbation
-
 parser = argparse.ArgumentParser()
 parser.add_argument("--videos_dir", type=str, default='')
 parser.add_argument("--model", type=str, default='r2plus1d',
@@ -42,7 +40,7 @@ parser.add_argument("--model", type=str, default='r2plus1d',
 parser.add_argument("--pretrain_dataset", type=str, default='kinetics',
                     choices=['', 'kinetics', 'epic-kitchens-verb', 'epic-kitchens-noun'])
 parser.add_argument("--vis_method", type=str, default='integrated_grad',
-                    choices=['grad', 'grad*input', 'integrated_grad', 'smooth_grad', 'grad_cam', 'perturb'])
+                    choices=['grad', 'grad*input', 'integrated_grad', 'smooth_grad', 'grad_cam', 'step', '3d_ep', '2d_ep'])
 parser.add_argument("--save_label", type=str, default='')
 parser.add_argument("--no_gpu", action='store_true')
 parser.add_argument("--num_iter", type=int, default=2000)
@@ -51,26 +49,6 @@ parser.add_argument('--perturb_area', type=float, default=0.1,
 parser.add_argument('--polarity', type=str, default='both',
                     choices=['positive', 'negative', 'both'])
 args = parser.parse_args()
-
-# assert args.num_gpu >= -1
-# if args.num_gpu == 0:
-#     num_devices = 0
-#     multi_gpu = False
-#     device = torch.device("cpu")
-# elif args.num_gpu == 1:
-#     num_devices = 1
-#     multi_gpu = False
-#     device = torch.device("cuda")
-# elif args.num_gpu == -1:
-#     num_devices = torch.cuda.device_count()
-#     multi_gpu = (num_devices > 1)
-#     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-# else:
-#     num_devices = args.num_gpu
-#     assert torch.cuda.device_count() >= num_devices, \
-#         f'Assign {args.num_gpu} GPUs, but only detected only {torch.cuda.device_count()} GPUs. Exiting...'
-#     multi_gpu = True
-#     device = torch.device("cuda")
 
 if args.no_gpu:
     device = torch.device("cpu")
@@ -166,17 +144,12 @@ for sample in tqdm(test_dataloader):
             raise Exception(f'Grad-CAM does not support {args.model} currently')
         res = grad_cam(inp, label, model_ft, device, layer_name=layer_name, norm_vis=True)
         heatmap_np = overlap_maps_on_voxel_np(inp_np, res[0,0].cpu().numpy(), norm_map=False)
-    elif args.vis_method == 'perturb':
+    elif 'ep' in args.vis_method:
         sigma = 11 if inp.shape[-1] == 112 else 23
         res = video_perturbation(
-                    model_ft, inp, label, areas=[args.perturb_area], sigma=sigma, 
-                    max_iter=args.num_iter, variant="preserve",
-                    num_devices=num_devices, print_iter=100, perturb_type="fade")[0]
-        # res = spatiotemporal_perturbation(
-        #             model_ft, inp, label, areas=[0.1, 0.2, 0.3], sigma=sigma, 
-        #             max_iter=args.num_iter, variant="preserve",
-        #             num_devices=num_devices, print_iter=100, perturb_type="fade")[0]
-        # print(res.shape)
+                    model_ft, inp, label, method=args.vis_method, areas=[args.perturb_area], 
+                    sigma=sigma, max_iter=args.num_iter, variant="preserve",
+                    num_devices=num_devices, print_iter=200, perturb_type="blur")[0]
         heatmap_np = overlap_maps_on_voxel_np(inp_np, res[0,0].cpu().numpy(), norm_map=False)
 
     sample_name = sample[2][0].split("/")[-1]
