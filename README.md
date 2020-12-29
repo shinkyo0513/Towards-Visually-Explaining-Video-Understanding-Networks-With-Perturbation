@@ -87,7 +87,7 @@ Arguments for gradient methods:
 
 ### Ours preprint for perturbation-based attribution (to appear in WACV2021):
 ```
-@article{li2020comprehensive,
+@article{li2020towards,
   title={Towards Visually Explaining Video Understanding Networks with Perturbation},
   author={Li, Zhenqiang and Wang, Weimin and Li, Zuoyue and Huang, Yifei and Sato, Yoichi},
   journal={arXiv preprint arXiv:2005.00375},
