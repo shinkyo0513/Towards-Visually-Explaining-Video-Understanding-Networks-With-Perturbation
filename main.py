@@ -28,9 +28,12 @@ proj_root = path_dict.proj_root
 from utils.ImageShow import *
 
 from visual_meth.integrated_grad import integrated_grad
+from visual_meth.smooth_grad import smooth_grad
 from visual_meth.gradients import gradients
 from visual_meth.perturbation import video_perturbation
 from visual_meth.grad_cam import grad_cam
+
+from visual_meth.perturbation_area import spatiotemporal_perturbation
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--videos_dir", type=str, default='')
@@ -39,14 +42,14 @@ parser.add_argument("--model", type=str, default='r2plus1d',
 parser.add_argument("--pretrain_dataset", type=str, default='kinetics',
                     choices=['', 'kinetics', 'epic-kitchens-verb', 'epic-kitchens-noun'])
 parser.add_argument("--vis_method", type=str, default='integrated_grad',
-                    choices=['grad', 'grad*input', 'integrated_grad', 'grad_cam', 'perturb'])
+                    choices=['grad', 'grad*input', 'integrated_grad', 'smooth_grad', 'grad_cam', 'perturb'])
 parser.add_argument("--save_label", type=str, default='')
 parser.add_argument("--no_gpu", action='store_true')
 parser.add_argument("--num_iter", type=int, default=2000)
 parser.add_argument('--perturb_area', type=float, default=0.1,
                     choices=[0.01, 0.02, 0.05, 0.1, 0.15, 0.2])
-parser.add_argument('--polarity', type=str, default='positive',
-                    choices=['positive', 'negative'])
+parser.add_argument('--polarity', type=str, default='both',
+                    choices=['positive', 'negative', 'both'])
 args = parser.parse_args()
 
 # assert args.num_gpu >= -1
@@ -141,7 +144,10 @@ for sample in tqdm(test_dataloader):
     inp_np = voxel_tensor_to_np(inp[0].detach().cpu())   # 3 x num_f x 224 224
 
     if args.vis_method == 'integrated_grad':
-        res = integrated_grad(inp, label, model_ft, device, steps=50, polarity=args.polarity)
+        res = integrated_grad(inp, label, model_ft, device, steps=25, polarity=args.polarity)
+        heatmap_np = res[0].numpy()
+    elif args.vis_method == 'smooth_grad':
+        res = smooth_grad(inp, label, model_ft, device, variant='square')
         heatmap_np = res[0].numpy()
     elif args.vis_method == 'grad':
         res = gradients(inp, label, model_ft, device, polarity=args.polarity)
@@ -166,12 +172,17 @@ for sample in tqdm(test_dataloader):
                     model_ft, inp, label, areas=[args.perturb_area], sigma=sigma, 
                     max_iter=args.num_iter, variant="preserve",
                     num_devices=num_devices, print_iter=100, perturb_type="fade")[0]
+        # res = spatiotemporal_perturbation(
+        #             model_ft, inp, label, areas=[0.1, 0.2, 0.3], sigma=sigma, 
+        #             max_iter=args.num_iter, variant="preserve",
+        #             num_devices=num_devices, print_iter=100, perturb_type="fade")[0]
+        # print(res.shape)
         heatmap_np = overlap_maps_on_voxel_np(inp_np, res[0,0].cpu().numpy(), norm_map=False)
 
     sample_name = sample[2][0].split("/")[-1]
     plot_save_name = f"{sample_name}.png"
     if args.vis_method in ['grad', 'grad*input', 'integrated_grad']:
-        plot_save_name = plot_save_name.replace('.png', f'{args.polarity}.png')
+        plot_save_name = plot_save_name.replace('.png', f'_{args.polarity}.png')
     plot_save_dir = os.path.join(proj_root, "visual_res", args.vis_method, args.model)
     if args.save_label != '':
         plot_save_dir = os.path.join(plot_save_dir, args.save_label)

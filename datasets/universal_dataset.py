@@ -55,7 +55,7 @@ class UniversalDataset (Dataset):
             video_frames_dir = os.path.join(self.data_dir, video_name)
             frame_names = sorted([f for f in os.listdir(video_frames_dir) if '.png' in f or '.jpg' in f])
             num_frame = len(frame_names)
-            assert num_frame > self.clip_length, \
+            assert num_frame >= self.clip_length, \
                 f"Number of frames should be larger than {self.clip_length}, given {num_frame}"
 
             clip_fidxs = long_range_sample(num_frame, self.clip_length, 'first')
