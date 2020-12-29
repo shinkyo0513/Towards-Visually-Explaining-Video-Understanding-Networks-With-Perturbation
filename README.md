@@ -77,9 +77,9 @@ Arguments for gradient methods:
 ![ucf101-longjump](figures/v_LongJump_g01_c06_frames.gif) ![ucf101-longjump](figures/v_LongJump_g01_c06_ptb.gif)
 #### Walking With Dog
 ![ucf101-walikingdog](figures/v_WalkingWithDog_g06_c05_frames.gif) ![ucf101-walikingdog](figures/v_WalkingWithDog_g06_c05_ptb.gif) -->
-| <div style="width:150px">Basketball 5%</div> | <div style="width:150px">Skijet 5%</div> | <div style="width:150px">Walking-With-Dog 10%</div> | <div style="width:150px">OpenFridge 10%</div> | <div style="width:150px">CloseDrawer 10%</div> | <div style="width:150px">OpenCupboard 15%</div> |
+| <div style="width:100px">Basketball 5%</div> | <div style="width:100px">Skijet 5%</div> | <div style="width:100px">Walking-With-Dog 10%</div> | <div style="width:100px">OpenFridge 10%</div> | <div style="width:100px">CloseDrawer 10%</div> | <div style="width:100px">OpenCupboard 15%</div> |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| <img src="figures/step_gif_res/basketball_05.gif" width=150/> | <img src="figures/step_gif_res/skijet_05.gif" width=150/> | <img src="figures/step_gif_res/walking_with_dog_10.gif" width=150/> | <img src="figures/step_gif_res/fencing_10.gif" width=150/> | <img src="figures/step_gif_res/open_fridge_10.gif" width=150/> | <img src="figures/step_gif_res/close_drawer_10.gif" width=150/> | <img src="figures/step_gif_res/open_cupboard_15.gif" width=150/> |
+| <img src="figures/step_gif_res/basketball_05.gif" width=100/> | <img src="figures/step_gif_res/skijet_05.gif" width=100/> | <img src="figures/step_gif_res/walking_with_dog_10.gif" width=100/> | <img src="figures/step_gif_res/fencing_10.gif" width=100/> | <img src="figures/step_gif_res/open_fridge_10.gif" width=100/> | <img src="figures/step_gif_res/close_drawer_10.gif" width=100/> | <img src="figures/step_gif_res/open_cupboard_15.gif" width=100/> |
 
 ## Reference
 
