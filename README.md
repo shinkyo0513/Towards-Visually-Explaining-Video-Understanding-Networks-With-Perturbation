@@ -65,13 +65,6 @@ Arguments for gradient methods:
 
 ## Results
 
-### Kinectis-400 (GT = ironing)
-![Kinectis-400 (GT = ironing)](figures/res_fig_kinetics.png)
-'Perturbation' denotes 3D-EP here.
-### EPIC-Kitchens-Noun (GT = cupboard)
-![EPIC-Kitchens-Noun (GT = cupboard)](figures/res_fig_epic.png)
-'Perturbation' denotes 3D-EP here.
-
 ### GIF visualization of perturbation results (on UCF101 dataset by STEP)
 <!-- #### Long Jump
 ![ucf101-longjump](figures/v_LongJump_g01_c06_frames.gif) ![ucf101-longjump](figures/v_LongJump_g01_c06_ptb.gif)
@@ -82,6 +75,12 @@ Arguments for gradient methods:
 | ![](figures/step_gif_res/basketball_05.gif) | ![](figures/step_gif_res/skijet_05.gif) | ![](figures/step_gif_res/walking_with_dog_10.gif) | ![](figures/step_gif_res/fencing_10.gif) | ![](figures/step_gif_res/open_fridge_10.gif) | ![](figures/step_gif_res/close_drawer_10.gif) | ![](figures/step_gif_res/open_cupboard_15.gif) |
 | --- | ---| --- | --- | --- | --- | --- |
 
+### Kinectis-400 (GT = ironing)
+![Kinectis-400 (GT = ironing)](figures/res_fig_kinetics.png)
+'Perturbation' denotes 3D-EP here.
+### EPIC-Kitchens-Noun (GT = cupboard)
+![EPIC-Kitchens-Noun (GT = cupboard)](figures/res_fig_epic.png)
+'Perturbation' denotes 3D-EP here.
 
 ## Reference
 
