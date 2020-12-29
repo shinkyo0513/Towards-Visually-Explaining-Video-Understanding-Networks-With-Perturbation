@@ -53,11 +53,11 @@ Arguments for gradient methods:
 
 ### Examples
 
-#### Saptiotemporal Perturbation + R(2+1)D (pretrained on Kinetics-400)
+#### STEP + R(2+1)D (pretrained on Kinetics-400)
 `$ python main.py --videos_dir VideoVisual/test_data/kinetics/sampled_frames --model r2plus1d --pretrain_dataset kinetics --vis_method step --num_iter 2000 --perturb_area 0.1`
 
-#### Spatiotemporal Perturbation + TSM (pretrained on EPIC-Kitchens-noun)
-`$ python main.py --videos_dir VideoVisual/test_data/epic-kitchens-noun/sampled_frames --model tsm --pretrain_dataset epic-kitchens-noun --vis_method perturb --num_iter 2000 --perturb_area 0.05`
+#### 3D-EP + TSM (pretrained on EPIC-Kitchens-noun)
+`$ python main.py --videos_dir VideoVisual/test_data/epic-kitchens-noun/sampled_frames --model tsm --pretrain_dataset epic-kitchens-noun --vis_method 3d_ep --num_iter 2000 --perturb_area 0.05`
 
 #### Integrated Gradients + I3D (pretrained on Kinetics-400)
 `$ python main.py --videos_dir VideoVisual/test_data/kinetics/sampled_frames --model i3d --pretrain_dataset kinetics --vis_method integrated_grad`
@@ -85,7 +85,7 @@ Arguments for gradient methods:
 
 ## Reference
 
-### Ours preprint (to appear in WACV2021):
+### Ours preprint for perturbation-based attribution (to appear in WACV2021):
 ```
 @article{li2020comprehensive,
   title={Towards Visually Explaining Video Understanding Networks with Perturbation},
