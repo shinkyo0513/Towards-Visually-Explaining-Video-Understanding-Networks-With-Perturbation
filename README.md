@@ -84,13 +84,24 @@ Arguments for gradient methods:
 
 ## Reference
 
-### Ours preprint for perturbation-based attribution (Accepted by WACV2021):
+### Ours paper for perturbation-based video attribution (Accepted by WACV2021):
 ```
 @article{li2020towards,
   title={Towards Visually Explaining Video Understanding Networks with Perturbation},
   author={Li, Zhenqiang and Wang, Weimin and Li, Zuoyue and Huang, Yifei and Sato, Yoichi},
   journal={arXiv preprint arXiv:2005.00375},
   year={2020}
+}
+```
+or
+```
+@InProceedings{Li_2021_WACV,
+    author    = {Li, Zhenqiang and Wang, Weimin and Li, Zuoyue and Huang, Yifei and Sato, Yoichi},
+    title     = {Towards Visually Explaining Video Understanding Networks With Perturbation},
+    booktitle = {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+    month     = {January},
+    year      = {2021},
+    pages     = {1120-1129}
 }
 ```
 
