@@ -1,4 +1,4 @@
-# Video Visual Explanations
+# Towards Visually Explaining Video Understanding Networks With Perturbation
 
 This is a PyTorch demo implemented several visualization methods for video classification networks. The target is to provide a toolkit (as [TorchRay](https://github.com/facebookresearch/TorchRay) to image) to interprete commonly utilized video classfication networks, such as I3D, R(2+1)D, TSM et al., which is also called *attribution* task, namely the problem of determining which part of the input video is responsible for the value computed by a neural network. More information can also be referenced in our paper [Towards Visually Explaining Video Understanding Networks With Perturbation](https://openaccess.thecvf.com/content/WACV2021/papers/Li_Towards_Visually_Explaining_Video_Understanding_Networks_With_Perturbation_WACV_2021_paper.pdf).
 
